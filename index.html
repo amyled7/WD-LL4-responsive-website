@@ -1,16 +1,256 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>LiveLab 4 Demo</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nomadiq Travel Destinations</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Open+Sans&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #F1FAEE;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #A8DADC;
+    }
+
+    header h1 {
+      font-family: 'Lora', serif;
+      font-size: 1.8rem;
+      color: #1D3557;
+    }
+
+    nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: #1D3557;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #000;
+    }
+
+    .hero {
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      padding: 5rem 1rem;
+      color: white;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .hero h2 {
+      font-family: 'Lora', serif;
+      font-size: 2.5rem;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .about, .cta {
+      text-align: center;
+      padding: 3rem 1rem;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .about img {
+      max-width: 90%;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    .cta button {
+      background-color: #457B9D;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta button:hover {
+      background-color: #1D3557;
+      transform: scale(1.05);
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 1rem;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+    }
+
+    /* 🧾 MODAL STYLES */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #F1FAEE;
+      margin: 10% auto;
+      padding: 2rem;
+      border: 1px solid #888;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 0.5rem 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .modal-content button {
+      background-color: #457B9D;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .close {
+      color: #888;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
 </head>
-
 <body>
-  Hello world
-  <script src="script.js"></script>
-</body>
 
+  <header>
+    <h1>🌍 Nomadiq Travel Destinations</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Destinations</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Explore Sustainable Travel</h2>
+    <p>Discover eco-friendly destinations that support the planet and uplift local communities through conscious tourism.</p>
+  </section>
+
+  <section class="about">
+    <h3>About Nomadiq Travel Destinations</h3>
+    <p>We specialize in mindful, eco-conscious travel experiences that respect nature and support local cultures.</p>
+    <img src="https://images.unsplash.com/photo-1533236897111-3e94666b2edf" alt="Eco destination view">
+  </section>
+
+  <section class="cta">
+    <p>Ready to explore the world responsibly?</p>
+    <button>Plan Your Trip</button>
+  </section>
+
+  <!-- 🧳 POP-UP FORM MODAL -->
+  <div id="tripModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Plan Your Trip</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required><br>
+        <input type="email" placeholder="Your Email" required><br>
+        <input type="text" placeholder="Destination"><br>
+        <textarea placeholder="Tell us more about your ideal trip..."></textarea><br>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Animate sections when they scroll into view
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(sec => {
+      sec.style.animationPlayState = 'paused';
+      observer.observe(sec);
+    });
+
+    // Modal functionality
+    const modal = document.getElementById("tripModal");
+    const btn = document.querySelector(".cta button");
+    const span = document.querySelector(".close");
+
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
 </html>
+
+
+
